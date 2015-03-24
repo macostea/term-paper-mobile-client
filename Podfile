@@ -7,6 +7,7 @@ target 'TermPaperMobile' do
 	pod "SwiftSpinner"
 	pod 'Alamofire', '~> 1.1'
 	pod 'SwiftyJSON', '~> 2.1'
+    pod 'HTPressableButton'
 end
 
 target 'TermPaperMobileTests' do

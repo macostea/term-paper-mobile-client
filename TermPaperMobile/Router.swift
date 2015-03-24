@@ -19,6 +19,7 @@ enum Router: URLRequestConvertible {
     case DeleteExpense([String: AnyObject])
     
     case Login([String: AnyObject])
+    case Accounts(String)
     
     var method: Alamofire.Method {
         switch self {
@@ -34,6 +35,8 @@ enum Router: URLRequestConvertible {
             return .DELETE
         case .Login:
             return .POST
+        case .Accounts:
+            return .GET
         }
     }
     
@@ -56,6 +59,8 @@ enum Router: URLRequestConvertible {
             
         case .Login(_):
             return "/login"
+        case .Accounts(let userId) :
+            return "/users/\(userId)/accounts"
         }
     }
     

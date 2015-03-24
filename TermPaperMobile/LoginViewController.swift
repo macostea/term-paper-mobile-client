@@ -40,9 +40,21 @@ class LoginViewController: UIViewController {
                         return
                     }
                     
-                    SwiftSpinner.hide()
-                    
                     let loggedUser = User(json: json["user"], token: json["token"].string)
+                    Alamofire.request(Router.Accounts(loggedUser.userId)).responseJSON({ (req, res, jsonData, err) -> Void in
+                        let json = JSON(jsonData!)
+                        if let err = error {
+                            println(err)
+                            SwiftSpinner.show("Failed getting accounts", animated: false)
+                            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), { () -> Void in
+                                SwiftSpinner.hide()
+                            })
+                            return
+                        }
+                        
+                        println(json)
+                        SwiftSpinner.hide()
+                    })
                     println(loggedUser)
                 })
             }
