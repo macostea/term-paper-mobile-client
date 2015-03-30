@@ -7,22 +7,49 @@
 //
 
 import UIKit
+import Alamofire
+import SwiftSpinner
+import SwiftyJSON
 
 class MyAccountsTableViewController: UITableViewController {
 
-    var accounts: [Account]? {
-        set(newValue) {
-            self.accounts = newValue
-            self.tableView.reloadData()
-        }
-        get {
-            return self.accounts
-        }
-    }
+    var accounts: [Account]?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.requestData()
+    }
+    
+    // MARK: - Private
+    
+    func requestData() {
+        
+        if let user = LoginManager.sharedInstance.currentUser {
+            SwiftSpinner.show("Getting accounts", animated: true)
+            Alamofire.request(Router.Accounts(user.userId)).responseJSON({ (req, res, jsonData, error) -> Void in
+                if let err = error {
+                    println(err)
+                    SwiftSpinner.show("Failed getting accounts", animated: false)
+                    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), { () -> Void in
+                        SwiftSpinner.hide()
+                    })
+                    return
+                }
+                let json = JSON(jsonData!)
+                SwiftSpinner.hide()
+                
+                var accounts = [Account]()
+                
+                for accountJSON in json {
+                    let account = Account(json: accountJSON.1)
+                    accounts.append(account)
+                }
+                
+                self.accounts = accounts
+                self.tableView.reloadData()
+            })
+        }
     }
 
     // MARK: - Table view data source
@@ -50,5 +77,26 @@ class MyAccountsTableViewController: UITableViewController {
         }
 
         return cell
+    }
+    
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        if let accounts = self.accounts {
+            let account = accounts[indexPath.row]
+            
+            let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .ActionSheet)
+            alertController.addAction(UIAlertAction(title: "Send from this account", style: .Default, handler: { (action) -> Void in
+                
+            }))
+            
+            alertController.addAction(UIAlertAction(title: "Receive in this account", style: .Default, handler: { (action) -> Void in
+                
+            }))
+            
+            alertController.addAction(UIAlertAction(title: "Cancel", style: .Cancel, handler: { (action) -> Void in
+                self.dismissViewControllerAnimated(true, completion: nil)
+            }))
+            
+            self.presentViewController(alertController, animated: true, completion: nil)
+        }
     }
 }

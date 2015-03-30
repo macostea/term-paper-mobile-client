@@ -16,7 +16,6 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -27,38 +26,27 @@ class LoginViewController: UIViewController {
         if let email = self.emailTextField.text {
             if let password = self.passwordTextField.text {
                 SwiftSpinner.show("Working...")
-                var loginParams = ["email": email,
-                                   "password": password]
-                Alamofire.request(Router.Login(loginParams)).responseJSON({ (request, response, jsonData, error) -> Void in
-                    let json = JSON(jsonData!)
-                    if let err = error {
-                        println(err)
+                LoginManager.sharedInstance.loginUser(email, password: password, completionBlock: { (result) -> Void in
+                    switch result {
+                    case let .Error(err):
+                        println(err())
                         SwiftSpinner.show("Login failed", animated: false)
                         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), { () -> Void in
                             SwiftSpinner.hide()
                         })
-                        return
-                    }
-                    
-                    let loggedUser = User(json: json["user"], token: json["token"].string)
-                    Alamofire.request(Router.Accounts(loggedUser.userId)).responseJSON({ (req, res, jsonData, err) -> Void in
-                        let json = JSON(jsonData!)
-                        if let err = error {
-                            println(err)
-                            SwiftSpinner.show("Failed getting accounts", animated: false)
-                            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), { () -> Void in
-                                SwiftSpinner.hide()
-                            })
-                            return
-                        }
                         
-                        println(json)
-                        SwiftSpinner.hide()
-                    })
-                    println(loggedUser)
+                    case let .Result(res):
+                        let appDelegate = UIApplication.sharedApplication().delegate
+                        
+                        let storyboard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
+                        let navigationController = storyboard.instantiateViewControllerWithIdentifier("myAccountsNavigationController") as UINavigationController
+                        
+                        let accountsViewController = navigationController.viewControllers![0] as MyAccountsTableViewController
+                        
+                        appDelegate!.window!?.rootViewController = navigationController
+                    }
                 })
             }
         }
-        
     }
 }

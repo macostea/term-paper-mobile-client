@@ -18,6 +18,8 @@
 		15F9E8751AC0B4F5008E860E /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15F9E8741AC0B4F5008E860E /* LoginViewController.swift */; };
 		15F9E87A1AC0B780008E860E /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15F9E8791AC0B780008E860E /* User.swift */; };
 		15F9E87C1AC0B898008E860E /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15F9E87B1AC0B898008E860E /* Router.swift */; };
+		15FDEC5D1AC479EE002695DD /* LoginManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15FDEC5C1AC479EE002695DD /* LoginManager.swift */; };
+		15FDEC5F1AC47ADA002695DD /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15FDEC5E1AC47ADA002695DD /* Utils.swift */; };
 		3D4B4F00743E000BB07F789E /* Pods_TermPaperMobile.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F71A6F329988FF14EB37B30 /* Pods_TermPaperMobile.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 /* End PBXBuildFile section */
 
@@ -47,6 +49,8 @@
 		15F9E8741AC0B4F5008E860E /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		15F9E8791AC0B780008E860E /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		15F9E87B1AC0B898008E860E /* Router.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
+		15FDEC5C1AC479EE002695DD /* LoginManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginManager.swift; sourceTree = "<group>"; };
+		15FDEC5E1AC47ADA002695DD /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		2ECBBA9FFFF1F0D67B07DA38 /* Pods-TermPaperMobile.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TermPaperMobile.release.xcconfig"; path = "Pods/Target Support Files/Pods-TermPaperMobile/Pods-TermPaperMobile.release.xcconfig"; sourceTree = "<group>"; };
 		7F71A6F329988FF14EB37B30 /* Pods_TermPaperMobile.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TermPaperMobile.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F2B3531D81B7F64BD5472686 /* Pods-TermPaperMobile.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TermPaperMobile.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TermPaperMobile/Pods-TermPaperMobile.debug.xcconfig"; sourceTree = "<group>"; };
@@ -109,6 +113,7 @@
 		15F9E8521AC0B450008E860E /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				15FDEC5E1AC47ADA002695DD /* Utils.swift */,
 				15F9E8531AC0B450008E860E /* Info.plist */,
 			);
 			name = "Supporting Files";
@@ -144,6 +149,7 @@
 			isa = PBXGroup;
 			children = (
 				15F9E87B1AC0B898008E860E /* Router.swift */,
+				15FDEC5C1AC479EE002695DD /* LoginManager.swift */,
 			);
 			name = "Business Logic";
 			sourceTree = "<group>";
@@ -327,6 +333,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				154790BA1AC194E5000A0FA5 /* Transaction.swift in Sources */,
+				15FDEC5D1AC479EE002695DD /* LoginManager.swift in Sources */,
+				15FDEC5F1AC47ADA002695DD /* Utils.swift in Sources */,
 				15F9E87A1AC0B780008E860E /* User.swift in Sources */,
 				15F9E8751AC0B4F5008E860E /* LoginViewController.swift in Sources */,
 				15F9E87C1AC0B898008E860E /* Router.swift in Sources */,

@@ -25,7 +25,11 @@ struct User: Printable {
 }
 
 extension User {
-    init(json: JSON, token: String?) {
+    init?(json: JSON, token: String?) {
+        if token == nil {
+            return nil
+        }
+        
         self.userId = json["_id"].stringValue
         self.email = json["email"].stringValue
         self.name = json["name"].stringValue
