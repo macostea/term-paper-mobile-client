@@ -10,6 +10,9 @@
 		154790B61AC193C6000A0FA5 /* MyAccountsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 154790B51AC193C6000A0FA5 /* MyAccountsTableViewController.swift */; };
 		154790B81AC19428000A0FA5 /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = 154790B71AC19428000A0FA5 /* Account.swift */; };
 		154790BA1AC194E5000A0FA5 /* Transaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 154790B91AC194E5000A0FA5 /* Transaction.swift */; };
+		1562488A1AC9B32900DD8353 /* SelectPeersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 156248891AC9B32900DD8353 /* SelectPeersViewController.swift */; };
+		156996051ACB2D6600975E31 /* TransactionRelay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 156996041ACB2D6600975E31 /* TransactionRelay.swift */; };
+		1570EF0F1ACB15CD000848A3 /* AdvertiseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1570EF0E1ACB15CD000848A3 /* AdvertiseViewController.swift */; };
 		15F9E8551AC0B450008E860E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15F9E8541AC0B450008E860E /* AppDelegate.swift */; };
 		15F9E85A1AC0B450008E860E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 15F9E8581AC0B450008E860E /* Main.storyboard */; };
 		15F9E85C1AC0B450008E860E /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 15F9E85B1AC0B450008E860E /* Images.xcassets */; };
@@ -37,6 +40,9 @@
 		154790B51AC193C6000A0FA5 /* MyAccountsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyAccountsTableViewController.swift; sourceTree = "<group>"; };
 		154790B71AC19428000A0FA5 /* Account.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
 		154790B91AC194E5000A0FA5 /* Transaction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Transaction.swift; sourceTree = "<group>"; };
+		156248891AC9B32900DD8353 /* SelectPeersViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectPeersViewController.swift; sourceTree = "<group>"; };
+		156996041ACB2D6600975E31 /* TransactionRelay.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransactionRelay.swift; sourceTree = "<group>"; };
+		1570EF0E1ACB15CD000848A3 /* AdvertiseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdvertiseViewController.swift; sourceTree = "<group>"; };
 		15F9E84F1AC0B450008E860E /* TermPaperMobile.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TermPaperMobile.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		15F9E8531AC0B450008E860E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		15F9E8541AC0B450008E860E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -141,6 +147,8 @@
 			children = (
 				15F9E8741AC0B4F5008E860E /* LoginViewController.swift */,
 				154790B51AC193C6000A0FA5 /* MyAccountsTableViewController.swift */,
+				156248891AC9B32900DD8353 /* SelectPeersViewController.swift */,
+				1570EF0E1ACB15CD000848A3 /* AdvertiseViewController.swift */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -150,6 +158,7 @@
 			children = (
 				15F9E87B1AC0B898008E860E /* Router.swift */,
 				15FDEC5C1AC479EE002695DD /* LoginManager.swift */,
+				156996041ACB2D6600975E31 /* TransactionRelay.swift */,
 			);
 			name = "Business Logic";
 			sourceTree = "<group>";
@@ -334,10 +343,13 @@
 			files = (
 				154790BA1AC194E5000A0FA5 /* Transaction.swift in Sources */,
 				15FDEC5D1AC479EE002695DD /* LoginManager.swift in Sources */,
+				1562488A1AC9B32900DD8353 /* SelectPeersViewController.swift in Sources */,
 				15FDEC5F1AC47ADA002695DD /* Utils.swift in Sources */,
 				15F9E87A1AC0B780008E860E /* User.swift in Sources */,
+				1570EF0F1ACB15CD000848A3 /* AdvertiseViewController.swift in Sources */,
 				15F9E8751AC0B4F5008E860E /* LoginViewController.swift in Sources */,
 				15F9E87C1AC0B898008E860E /* Router.swift in Sources */,
+				156996051ACB2D6600975E31 /* TransactionRelay.swift in Sources */,
 				154790B61AC193C6000A0FA5 /* MyAccountsTableViewController.swift in Sources */,
 				15F9E8551AC0B450008E860E /* AppDelegate.swift in Sources */,
 				154790B81AC19428000A0FA5 /* Account.swift in Sources */,

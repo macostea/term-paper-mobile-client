@@ -24,10 +24,23 @@ struct Account: Printable {
 }
 
 extension Account {
-    init(json: JSON) {
+    init?(json: JSON) {
+        if json["_id"].string == nil {
+            return nil
+        }
+        
         self.status = json["status"].stringValue
         self.accountId = json["_id"].stringValue
         self.currentFunds = json["currentFunds"].floatValue
 //        self.accountHolder = User(json: json["accountHolder"], token: nil)!
+    }
+    
+    func toDict() -> [String: AnyObject] {
+        var dict = [String: AnyObject]()
+        dict["status"] = self.status
+        dict["_id"] = self.accountId
+        dict["currentFunds"] = self.currentFunds
+        
+        return dict
     }
 }

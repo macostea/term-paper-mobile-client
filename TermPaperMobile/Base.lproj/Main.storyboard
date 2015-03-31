@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14C1510" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="4w8-0D-xMh">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14C1514" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="4w8-0D-xMh">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -57,10 +57,113 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="My accounts" id="F0I-aM-TRd"/>
+                    <connections>
+                        <segue destination="21b-L3-TDj" kind="presentation" identifier="showPeersViewController" id="AXd-vp-xBx"/>
+                        <segue destination="DLw-Sa-jW8" kind="presentation" identifier="showAdvertiseViewController" id="oCt-NV-0bN"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="l7Z-ZX-Vc8" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="trD-wE-vxc" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="1814" y="328"/>
+            <point key="canvasLocation" x="1819" y="322"/>
+        </scene>
+        <!--Peers-->
+        <scene sceneID="f2Y-xd-6NH">
+            <objects>
+                <tableViewController id="AAS-O8-B2L" customClass="SelectPeersViewController" customModule="TermPaperMobile" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="raQ-nx-fSO">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="peersCell" textLabel="fCD-0B-Kno" style="IBUITableViewCellStyleDefault" id="B5C-GL-CuU">
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="B5C-GL-CuU" id="pbd-wf-2k1">
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="fCD-0B-Kno">
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="AAS-O8-B2L" id="MJa-dg-mFk"/>
+                            <outlet property="delegate" destination="AAS-O8-B2L" id="nNk-di-C8p"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Peers" id="mvL-xl-81K">
+                        <barButtonItem key="rightBarButtonItem" systemItem="cancel" id="Hji-od-YiY">
+                            <connections>
+                                <segue destination="trD-wE-vxc" kind="unwind" unwindAction="cancelSelection:" id="E05-ES-krj"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fF4-hA-f0S" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3578" y="328"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="U54-Hx-gzs">
+            <objects>
+                <navigationController id="21b-L3-TDj" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="HJj-TZ-uhG">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="AAS-O8-B2L" kind="relationship" relationship="rootViewController" id="kMK-Qk-naV"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="6EF-ad-f9u" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2660" y="344"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="PGv-f5-yk1">
+            <objects>
+                <navigationController id="DLw-Sa-jW8" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="cyD-nm-CdC">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="rrf-KY-F4H" kind="relationship" relationship="rootViewController" id="OpM-5D-7q5"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="0lI-Xg-nKf" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2660" y="1067"/>
+        </scene>
+        <!--Searching-->
+        <scene sceneID="Epw-zN-FNF">
+            <objects>
+                <viewController id="rrf-KY-F4H" customClass="AdvertiseViewController" customModule="TermPaperMobile" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="R0E-BS-gI0"/>
+                        <viewControllerLayoutGuide type="bottom" id="M9T-jm-QTf"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="lfp-IR-jZ1">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Searching" id="mAC-xO-LC4">
+                        <barButtonItem key="rightBarButtonItem" systemItem="cancel" id="hFm-8b-cbp">
+                            <connections>
+                                <segue destination="trD-wE-vxc" kind="unwind" unwindAction="cancelSelection:" id="uZE-xN-5Ww"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="pcU-e4-fUD" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3578" y="1067"/>
         </scene>
         <!--Login View Controller-->
         <scene sceneID="eOp-pd-UX5">

@@ -36,6 +36,9 @@ class LoginViewController: UIViewController {
                         })
                         
                     case let .Result(res):
+                        self.emailTextField.resignFirstResponder()
+                        self.emailTextField.resignFirstResponder()
+                        
                         let appDelegate = UIApplication.sharedApplication().delegate
                         
                         let storyboard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())

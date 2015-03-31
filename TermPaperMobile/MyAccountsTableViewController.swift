@@ -15,6 +15,10 @@ class MyAccountsTableViewController: UITableViewController {
 
     var accounts: [Account]?
     
+    var amountTextField: UITextField?
+    var amount: Float?
+    var selectedAccount: Account?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -42,8 +46,9 @@ class MyAccountsTableViewController: UITableViewController {
                 var accounts = [Account]()
                 
                 for accountJSON in json {
-                    let account = Account(json: accountJSON.1)
-                    accounts.append(account)
+                    if let account = Account(json: accountJSON.1) {
+                        accounts.append(account)
+                    }
                 }
                 
                 self.accounts = accounts
@@ -86,17 +91,81 @@ class MyAccountsTableViewController: UITableViewController {
             let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .ActionSheet)
             alertController.addAction(UIAlertAction(title: "Send from this account", style: .Default, handler: { (action) -> Void in
                 
+                let amountController = UIAlertController(title: "Amount", message: "Select amount to send", preferredStyle: UIAlertControllerStyle.Alert)
+                amountController.addTextFieldWithConfigurationHandler({ (textField) -> Void in
+                    textField.placeholder = "Amount"
+                    textField.keyboardType = .NumberPad
+                    self.amountTextField = textField
+                })
+                amountController.addAction(UIAlertAction(title: "Send", style: .Default, handler: { (action) -> Void in
+                    if let amountTextField = self.amountTextField {
+                        let numberFormatter = NSNumberFormatter()
+                        self.amount = numberFormatter.numberFromString(amountTextField.text)?.floatValue
+                        self.selectedAccount = account
+                        self.performSegueWithIdentifier("showPeersViewController", sender: nil)
+                    }
+                }))
+                amountController.addAction(UIAlertAction(title: "Cancel", style: .Cancel, handler: { (action) -> Void in
+                }))
+                
+                self.presentViewController(amountController, animated: true, completion: nil)
             }))
             
             alertController.addAction(UIAlertAction(title: "Receive in this account", style: .Default, handler: { (action) -> Void in
-                
+                self.selectedAccount = account
+                self.performSegueWithIdentifier("showAdvertiseViewController", sender: nil)
             }))
             
             alertController.addAction(UIAlertAction(title: "Cancel", style: .Cancel, handler: { (action) -> Void in
-                self.dismissViewControllerAnimated(true, completion: nil)
             }))
             
             self.presentViewController(alertController, animated: true, completion: nil)
+        }
+    }
+    
+    @IBAction func cancelSelection(segue: UIStoryboardSegue) {
+        
+    }
+    
+    // MARK:- Navigation
+    
+    override func shouldPerformSegueWithIdentifier(identifier: String?, sender: AnyObject?) -> Bool {
+        if identifier == "showPeersViewController" {
+            if let amount = self.amount {
+                if let selectedAccount = self.selectedAccount {
+                    return true
+                }
+            }
+            
+            return false
+        } else if identifier == "showAdvertiseViewController" {
+            if let selectedAccount = self.selectedAccount {
+                return true
+            }
+            return false
+        }
+        
+        return false
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "showPeersViewController" {
+            if let amount = self.amount {
+                let selectPeersNavigationController = segue.destinationViewController as UINavigationController
+                let selectPeersViewController = selectPeersNavigationController.viewControllers[0] as SelectPeersViewController
+                selectPeersViewController.amount = amount
+                
+                if let selectedAccount = self.selectedAccount {
+                    selectPeersViewController.account = selectedAccount
+                } else {
+                }
+            }
+        } else if segue.identifier == "showAdvertiseViewController" {
+            let advertiseNavigationController = segue.destinationViewController as UINavigationController
+            let advertiseViewController = advertiseNavigationController.viewControllers[0] as AdvertiseViewController
+            if let selectedAccount = self.selectedAccount {
+                advertiseViewController.account = selectedAccount
+            }
         }
     }
 }
