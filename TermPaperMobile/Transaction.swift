@@ -42,4 +42,13 @@ extension Transaction {
         
         return dict
     }
+    
+    func transactionRelayDict() -> [String: AnyObject] {
+        var dict = [String: AnyObject]()
+        dict["source"] = self.sourceAccount.accountId
+        dict["destination"] = self.destinationAccount.accountId
+        dict["amount"] = "\(self.amount)"
+        
+        return dict
+    }
 }

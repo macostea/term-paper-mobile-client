@@ -10,11 +10,11 @@ import Foundation
 import SwiftyJSON
 
 struct Account: Printable {
-    let accountId: String
-    let status: String
-    let currentFunds: Float
-    let accountHolder: User?
-    let pastTransactions: [Transaction]?
+    let accountId: String!
+    let status: String!
+    var currentFunds: Float!
+    var accountHolder: User?
+    var pastTransactions: [Transaction]?
     
     // Printable
     
@@ -29,10 +29,11 @@ extension Account {
             return nil
         }
         
-        self.status = json["status"].stringValue
-        self.accountId = json["_id"].stringValue
-        self.currentFunds = json["currentFunds"].floatValue
+        status = json["status"].stringValue
+        accountId = json["_id"].stringValue
+        currentFunds = json["currentFunds"].floatValue
 //        self.accountHolder = User(json: json["accountHolder"], token: nil)!
+
     }
     
     func toDict() -> [String: AnyObject] {

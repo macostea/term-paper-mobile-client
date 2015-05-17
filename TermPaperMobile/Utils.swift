@@ -7,8 +7,9 @@
 //
 
 import Foundation
+import Box
 
 enum Either<T, U> {
-    case Result(@autoclosure() -> T)
-    case Error(@autoclosure() -> U)
+    case Result(Box<T>)
+    case Error(Box<U>)
 }

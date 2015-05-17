@@ -13,6 +13,10 @@
 		1562488A1AC9B32900DD8353 /* SelectPeersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 156248891AC9B32900DD8353 /* SelectPeersViewController.swift */; };
 		156996051ACB2D6600975E31 /* TransactionRelay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 156996041ACB2D6600975E31 /* TransactionRelay.swift */; };
 		1570EF0F1ACB15CD000848A3 /* AdvertiseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1570EF0E1ACB15CD000848A3 /* AdvertiseViewController.swift */; };
+		15B6DE071B0896F500142BBD /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15B6DE041B0896F500142BBD /* Alamofire.framework */; };
+		15B6DE081B0896F500142BBD /* Box.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15B6DE051B0896F500142BBD /* Box.framework */; };
+		15B6DE091B0896F500142BBD /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15B6DE061B0896F500142BBD /* SwiftyJSON.framework */; };
+		15CD92131B08946A00ABB45B /* SwiftSpinner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15CD92121B08946A00ABB45B /* SwiftSpinner.swift */; };
 		15F9E8551AC0B450008E860E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15F9E8541AC0B450008E860E /* AppDelegate.swift */; };
 		15F9E85A1AC0B450008E860E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 15F9E8581AC0B450008E860E /* Main.storyboard */; };
 		15F9E85C1AC0B450008E860E /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 15F9E85B1AC0B450008E860E /* Images.xcassets */; };
@@ -23,7 +27,6 @@
 		15F9E87C1AC0B898008E860E /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15F9E87B1AC0B898008E860E /* Router.swift */; };
 		15FDEC5D1AC479EE002695DD /* LoginManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15FDEC5C1AC479EE002695DD /* LoginManager.swift */; };
 		15FDEC5F1AC47ADA002695DD /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15FDEC5E1AC47ADA002695DD /* Utils.swift */; };
-		3D4B4F00743E000BB07F789E /* Pods_TermPaperMobile.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F71A6F329988FF14EB37B30 /* Pods_TermPaperMobile.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -43,6 +46,11 @@
 		156248891AC9B32900DD8353 /* SelectPeersViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectPeersViewController.swift; sourceTree = "<group>"; };
 		156996041ACB2D6600975E31 /* TransactionRelay.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransactionRelay.swift; sourceTree = "<group>"; };
 		1570EF0E1ACB15CD000848A3 /* AdvertiseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdvertiseViewController.swift; sourceTree = "<group>"; };
+		15B6DE041B0896F500142BBD /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = Carthage/Build/iOS/Alamofire.framework; sourceTree = "<group>"; };
+		15B6DE051B0896F500142BBD /* Box.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Box.framework; path = Carthage/Build/iOS/Box.framework; sourceTree = "<group>"; };
+		15B6DE061B0896F500142BBD /* SwiftyJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyJSON.framework; path = Carthage/Build/iOS/SwiftyJSON.framework; sourceTree = "<group>"; };
+		15CD92101B0893E100ABB45B /* Carthage */ = {isa = PBXFileReference; lastKnownFileType = text; path = Carthage; sourceTree = "<group>"; };
+		15CD92121B08946A00ABB45B /* SwiftSpinner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftSpinner.swift; sourceTree = "<group>"; };
 		15F9E84F1AC0B450008E860E /* TermPaperMobile.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TermPaperMobile.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		15F9E8531AC0B450008E860E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		15F9E8541AC0B450008E860E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -57,9 +65,7 @@
 		15F9E87B1AC0B898008E860E /* Router.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
 		15FDEC5C1AC479EE002695DD /* LoginManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginManager.swift; sourceTree = "<group>"; };
 		15FDEC5E1AC47ADA002695DD /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
-		2ECBBA9FFFF1F0D67B07DA38 /* Pods-TermPaperMobile.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TermPaperMobile.release.xcconfig"; path = "Pods/Target Support Files/Pods-TermPaperMobile/Pods-TermPaperMobile.release.xcconfig"; sourceTree = "<group>"; };
 		7F71A6F329988FF14EB37B30 /* Pods_TermPaperMobile.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TermPaperMobile.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		F2B3531D81B7F64BD5472686 /* Pods-TermPaperMobile.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TermPaperMobile.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TermPaperMobile/Pods-TermPaperMobile.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,7 +73,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3D4B4F00743E000BB07F789E /* Pods_TermPaperMobile.framework in Frameworks */,
+				15B6DE071B0896F500142BBD /* Alamofire.framework in Frameworks */,
+				15B6DE081B0896F500142BBD /* Box.framework in Frameworks */,
+				15B6DE091B0896F500142BBD /* SwiftyJSON.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -81,13 +89,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		15CD92111B08945F00ABB45B /* Third Party */ = {
+			isa = PBXGroup;
+			children = (
+				15CD92121B08946A00ABB45B /* SwiftSpinner.swift */,
+			);
+			name = "Third Party";
+			sourceTree = "<group>";
+		};
 		15F9E8461AC0B450008E860E = {
 			isa = PBXGroup;
 			children = (
+				15CD92101B0893E100ABB45B /* Carthage */,
 				15F9E8511AC0B450008E860E /* TermPaperMobile */,
 				15F9E8671AC0B450008E860E /* TermPaperMobileTests */,
 				15F9E8501AC0B450008E860E /* Products */,
-				1D2904908B0CC38BF2E0A8F1 /* Pods */,
 				5B49FB387E53974C4918F2E9 /* Frameworks */,
 			);
 			sourceTree = "<group>";
@@ -104,6 +120,7 @@
 		15F9E8511AC0B450008E860E /* TermPaperMobile */ = {
 			isa = PBXGroup;
 			children = (
+				15CD92111B08945F00ABB45B /* Third Party */,
 				15F9E8781AC0B769008E860E /* Model */,
 				15F9E8771AC0B761008E860E /* Business Logic */,
 				15F9E8541AC0B450008E860E /* AppDelegate.swift */,
@@ -173,18 +190,12 @@
 			name = Model;
 			sourceTree = "<group>";
 		};
-		1D2904908B0CC38BF2E0A8F1 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				F2B3531D81B7F64BD5472686 /* Pods-TermPaperMobile.debug.xcconfig */,
-				2ECBBA9FFFF1F0D67B07DA38 /* Pods-TermPaperMobile.release.xcconfig */,
-			);
-			name = Pods;
-			sourceTree = "<group>";
-		};
 		5B49FB387E53974C4918F2E9 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				15B6DE041B0896F500142BBD /* Alamofire.framework */,
+				15B6DE051B0896F500142BBD /* Box.framework */,
+				15B6DE061B0896F500142BBD /* SwiftyJSON.framework */,
 				7F71A6F329988FF14EB37B30 /* Pods_TermPaperMobile.framework */,
 			);
 			name = Frameworks;
@@ -197,12 +208,10 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 15F9E86E1AC0B450008E860E /* Build configuration list for PBXNativeTarget "TermPaperMobile" */;
 			buildPhases = (
-				0A6B4EC695A59E7791424681 /* Check Pods Manifest.lock */,
 				15F9E84B1AC0B450008E860E /* Sources */,
 				15F9E84C1AC0B450008E860E /* Frameworks */,
 				15F9E84D1AC0B450008E860E /* Resources */,
-				B25ACFC5DF7A8C63A2A070CB /* Embed Pods Frameworks */,
-				E3EED22121953ED46EBA3B45 /* Copy Pods Resources */,
+				15B6DE0A1B0896FF00142BBD /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -289,50 +298,21 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		0A6B4EC695A59E7791424681 /* Check Pods Manifest.lock */ = {
+		15B6DE0A1B0896FF00142BBD /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
+				"$(SRCROOT)/Carthage/Build/iOS/Alamofire.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/Box.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/SwiftyJSON.framework",
 			);
-			name = "Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
-		B25ACFC5DF7A8C63A2A070CB /* Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TermPaperMobile/Pods-TermPaperMobile-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		E3EED22121953ED46EBA3B45 /* Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TermPaperMobile/Pods-TermPaperMobile-resources.sh\"\n";
-			showEnvVarsInLog = 0;
+			shellScript = "/usr/local/bin/carthage copy-frameworks";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -347,6 +327,7 @@
 				15FDEC5F1AC47ADA002695DD /* Utils.swift in Sources */,
 				15F9E87A1AC0B780008E860E /* User.swift in Sources */,
 				1570EF0F1ACB15CD000848A3 /* AdvertiseViewController.swift in Sources */,
+				15CD92131B08946A00ABB45B /* SwiftSpinner.swift in Sources */,
 				15F9E8751AC0B4F5008E860E /* LoginViewController.swift in Sources */,
 				15F9E87C1AC0B898008E860E /* Router.swift in Sources */,
 				156996051ACB2D6600975E31 /* TransactionRelay.swift in Sources */,
@@ -473,9 +454,12 @@
 		};
 		15F9E86F1AC0B450008E860E /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = F2B3531D81B7F64BD5472686 /* Pods-TermPaperMobile.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = TermPaperMobile/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -485,9 +469,12 @@
 		};
 		15F9E8701AC0B450008E860E /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2ECBBA9FFFF1F0D67B07DA38 /* Pods-TermPaperMobile.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = TermPaperMobile/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

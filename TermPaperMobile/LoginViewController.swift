@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import SwiftSpinner
 import Alamofire
 import SwiftyJSON
 
@@ -29,7 +28,7 @@ class LoginViewController: UIViewController {
                 LoginManager.sharedInstance.loginUser(email, password: password, completionBlock: { (result) -> Void in
                     switch result {
                     case let .Error(err):
-                        println(err())
+                        println(err)
                         SwiftSpinner.show("Login failed", animated: false)
                         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), { () -> Void in
                             SwiftSpinner.hide()
@@ -42,9 +41,9 @@ class LoginViewController: UIViewController {
                         let appDelegate = UIApplication.sharedApplication().delegate
                         
                         let storyboard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
-                        let navigationController = storyboard.instantiateViewControllerWithIdentifier("myAccountsNavigationController") as UINavigationController
+                        let navigationController = storyboard.instantiateViewControllerWithIdentifier("myAccountsNavigationController") as! UINavigationController
                         
-                        let accountsViewController = navigationController.viewControllers![0] as MyAccountsTableViewController
+                        let accountsViewController = navigationController.viewControllers![0] as! MyAccountsTableViewController
                         
                         appDelegate!.window!?.rootViewController = navigationController
                     }

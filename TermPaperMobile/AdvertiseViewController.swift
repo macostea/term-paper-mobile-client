@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import SwiftSpinner
 import MultipeerConnectivity
 import SwiftyJSON
 
@@ -31,9 +30,7 @@ class AdvertiseViewController: UIViewController, MCNearbyServiceAdvertiserDelega
     }
     
     // MARK:- Multipeer
-    
-    //TODO: Move all this in TransactionRelay
-    
+        
     private func initMultipeerConnection() {
         if let user = LoginManager.sharedInstance.currentUser {
             self.localPeerID = MCPeerID(displayName: user.name)
@@ -86,7 +83,7 @@ class AdvertiseViewController: UIViewController, MCNearbyServiceAdvertiserDelega
     
     func session(session: MCSession!, didReceiveData data: NSData!, fromPeer peerID: MCPeerID!) {
         var error: NSError?
-        let dict = NSJSONSerialization.JSONObjectWithData(data, options: .allZeros, error: &error) as [String: AnyObject]
+        let dict = NSJSONSerialization.JSONObjectWithData(data, options: .allZeros, error: &error) as! [String: AnyObject]
         
         if error != nil {
             dispatch_async(dispatch_get_main_queue(), { () -> Void in
@@ -100,13 +97,17 @@ class AdvertiseViewController: UIViewController, MCNearbyServiceAdvertiserDelega
         
         if let transactionDict = dict["transaction"] as? [String: AnyObject] {
             if let transaction = Transaction(json: JSON(transactionDict)) {
-                println(transaction)
             
                 dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                    SwiftSpinner.show("Transaction complete", animated: false)
+                    SwiftSpinner.show("Checking transaction...", animated: true)
                     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), { () -> Void in
                         SwiftSpinner.hide()
                     })
+                })
+                
+                // CHECKING TRANSACTION CODE GOES HERE
+                TransactionRelay.authorizeTransaction(transaction, completionBlock: { (success) -> Void in
+                    
                 })
             }
         }

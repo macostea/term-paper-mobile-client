@@ -8,7 +8,6 @@
 
 import UIKit
 import Alamofire
-import SwiftSpinner
 import SwiftyJSON
 
 class MyAccountsTableViewController: UITableViewController {
@@ -31,7 +30,7 @@ class MyAccountsTableViewController: UITableViewController {
         
         if let user = LoginManager.sharedInstance.currentUser {
             SwiftSpinner.show("Getting accounts", animated: true)
-            Alamofire.request(Router.Accounts(user.userId)).responseJSON({ (req, res, jsonData, error) -> Void in
+            Alamofire.request(Router.Accounts(user.token!, user.userId)).responseJSON(options: .allZeros, completionHandler: { (request, response, jsonData, error) -> Void in
                 if let err = error {
                     println(err)
                     SwiftSpinner.show("Failed getting accounts", animated: false)
@@ -73,7 +72,7 @@ class MyAccountsTableViewController: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("accountCell", forIndexPath: indexPath) as UITableViewCell
+        let cell = tableView.dequeueReusableCellWithIdentifier("accountCell", forIndexPath: indexPath) as! UITableViewCell
 
         if let accounts = self.accounts {
             let account = accounts[indexPath.row]
@@ -151,8 +150,8 @@ class MyAccountsTableViewController: UITableViewController {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "showPeersViewController" {
             if let amount = self.amount {
-                let selectPeersNavigationController = segue.destinationViewController as UINavigationController
-                let selectPeersViewController = selectPeersNavigationController.viewControllers[0] as SelectPeersViewController
+                let selectPeersNavigationController = segue.destinationViewController as! UINavigationController
+                let selectPeersViewController = selectPeersNavigationController.viewControllers[0] as! SelectPeersViewController
                 selectPeersViewController.amount = amount
                 
                 if let selectedAccount = self.selectedAccount {
@@ -161,8 +160,8 @@ class MyAccountsTableViewController: UITableViewController {
                 }
             }
         } else if segue.identifier == "showAdvertiseViewController" {
-            let advertiseNavigationController = segue.destinationViewController as UINavigationController
-            let advertiseViewController = advertiseNavigationController.viewControllers[0] as AdvertiseViewController
+            let advertiseNavigationController = segue.destinationViewController as! UINavigationController
+            let advertiseViewController = advertiseNavigationController.viewControllers[0] as! AdvertiseViewController
             if let selectedAccount = self.selectedAccount {
                 advertiseViewController.account = selectedAccount
             }

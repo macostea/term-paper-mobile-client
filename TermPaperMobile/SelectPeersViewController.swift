@@ -8,7 +8,6 @@
 
 import UIKit
 import MultipeerConnectivity
-import SwiftSpinner
 import SwiftyJSON
 
 private let transferServiceType = "tpmc-transfer"
@@ -47,7 +46,7 @@ class SelectPeersViewController: UITableViewController, MCNearbyServiceBrowserDe
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("peersCell") as UITableViewCell
+        let cell = tableView.dequeueReusableCellWithIdentifier("peersCell") as! UITableViewCell
         let peer = self.peers[indexPath.row]
         cell.textLabel?.text = peer.displayName
         
@@ -69,8 +68,6 @@ class SelectPeersViewController: UITableViewController, MCNearbyServiceBrowserDe
     
 // MARK:- Multipeer Coonectivity
     
-    //TODO: Move all this in TransactionRelay
-
     func initMultipeerSession() {
         if let user = LoginManager.sharedInstance.currentUser {
             self.localPeerID = MCPeerID(displayName: user.name)
@@ -125,7 +122,7 @@ class SelectPeersViewController: UITableViewController, MCNearbyServiceBrowserDe
     
     func session(session: MCSession!, didReceiveData data: NSData!, fromPeer peerID: MCPeerID!) {
         var error: NSError?
-        let dict = NSJSONSerialization.JSONObjectWithData(data, options: .allZeros, error: &error) as [String: AnyObject]
+        let dict = NSJSONSerialization.JSONObjectWithData(data, options: .allZeros, error: &error) as! [String: AnyObject]
         
         if error != nil {
             dispatch_async(dispatch_get_main_queue(), { () -> Void in
@@ -199,9 +196,13 @@ class SelectPeersViewController: UITableViewController, MCNearbyServiceBrowserDe
                         } else {
                             dispatch_async(dispatch_get_main_queue(), { () -> Void in
                                 SwiftSpinner.show("Transaction sent", animated: false)
-                                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), { () -> Void in
-                                    SwiftSpinner.hide()
+                                
+                                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), { () -> Void in
+                                    SwiftSpinner.show("Checking transaction...", animated: true)
                                 })
+                                
+                                // CHECKING TRANSACTION CODE GOES HERE
+                                
                             })
                         }
                         return
