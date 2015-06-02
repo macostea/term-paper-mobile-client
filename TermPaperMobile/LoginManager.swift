@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import Alamofire
 import SwiftyJSON
 import Box
 
@@ -24,18 +23,17 @@ class LoginManager: NSObject {
     func loginUser(email: String, password: String, completionBlock: (result: Either<User, NSError>) -> Void) {
         var loginParams = ["email": email,
                            "password": password]
-        Alamofire.request(Router.Login(loginParams)).responseJSON(options: .AllowFragments) { (request, response, jsonData, error) -> Void in
-            println("jsonData \(jsonData)")
+        Router.sharedInstance.login(loginParams, completionBlock: { (jsonData, error) -> Void in
+            println(jsonData)
+            
             if let err = error {
                 completionBlock(result: .Error(Box<NSError>(err)))
                 return
             }
             
-            let json = JSON(jsonData!)
-            
-            let loggedUser = User(json: json["user"], token: json["token"].string)
+            let loggedUser = User(json: jsonData!["user"], token: jsonData!["token"].string)
             self.currentUser = loggedUser
             completionBlock(result: .Result(Box<User>(loggedUser!)))
-        }
+        })
     }
 }

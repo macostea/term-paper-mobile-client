@@ -7,23 +7,21 @@
 //
 
 import Foundation
-import Alamofire
 import SwiftyJSON
 
 class TransactionRelay: NSObject {
     
     class func authorizeTransaction(transaction: Transaction, completionBlock: (Bool) -> Void) {
         if let token = LoginManager.sharedInstance.currentUser?.token {
-            Alamofire.request(Router.AuthorizeTransaction(token, transaction.transactionRelayDict())).responseJSON(options: NSJSONReadingOptions.allZeros, completionHandler: { (request, response, data, error) -> Void in
+            Router.sharedInstance.authorizeTransaction(token, parameters: transaction.transactionRelayDict(), completionBlock: { (json, error) -> Void in
                 if let err = error {
                     println("Failed to authorize transaction: \(err)")
                     completionBlock(false)
                     return
                 }
                 
-                let json = JSON(data!)
                 println(json)
-
+                completionBlock(true)
             })
         }
     }

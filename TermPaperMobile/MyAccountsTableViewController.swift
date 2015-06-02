@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import Alamofire
 import SwiftyJSON
 
 class MyAccountsTableViewController: UITableViewController {
@@ -30,7 +29,7 @@ class MyAccountsTableViewController: UITableViewController {
         
         if let user = LoginManager.sharedInstance.currentUser {
             SwiftSpinner.show("Getting accounts", animated: true)
-            Alamofire.request(Router.Accounts(user.token!, user.userId)).responseJSON(options: .allZeros, completionHandler: { (request, response, jsonData, error) -> Void in
+            Router.sharedInstance.accounts(user.token!, userId: user.userId, completionBlock: { (json, error) -> Void in
                 if let err = error {
                     println(err)
                     SwiftSpinner.show("Failed getting accounts", animated: false)
@@ -39,12 +38,11 @@ class MyAccountsTableViewController: UITableViewController {
                     })
                     return
                 }
-                let json = JSON(jsonData!)
                 SwiftSpinner.hide()
-                
+
                 var accounts = [Account]()
-                
-                for accountJSON in json {
+
+                for accountJSON in json! {
                     if let account = Account(json: accountJSON.1) {
                         accounts.append(account)
                     }
@@ -52,6 +50,7 @@ class MyAccountsTableViewController: UITableViewController {
                 
                 self.accounts = accounts
                 self.tableView.reloadData()
+
             })
         }
     }

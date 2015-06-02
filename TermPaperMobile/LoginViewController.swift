@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import Alamofire
 import SwiftyJSON
 
 class LoginViewController: UIViewController {
@@ -28,7 +27,6 @@ class LoginViewController: UIViewController {
                 LoginManager.sharedInstance.loginUser(email, password: password, completionBlock: { (result) -> Void in
                     switch result {
                     case let .Error(err):
-                        println(err)
                         SwiftSpinner.show("Login failed", animated: false)
                         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), { () -> Void in
                             SwiftSpinner.hide()
