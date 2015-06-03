@@ -20,13 +20,17 @@ class MyAccountsTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
         self.requestData()
     }
     
     // MARK: - Private
     
     func requestData() {
-        
         if let user = LoginManager.sharedInstance.currentUser {
             SwiftSpinner.show("Getting accounts", animated: true)
             Router.sharedInstance.accounts(user.token!, userId: user.userId, completionBlock: { (json, error) -> Void in

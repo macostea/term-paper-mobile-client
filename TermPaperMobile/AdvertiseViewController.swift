@@ -34,7 +34,16 @@ class AdvertiseViewController: UIViewController, MCNearbyServiceAdvertiserDelega
     private func initMultipeerConnection() {
         if let user = LoginManager.sharedInstance.currentUser {
             self.localPeerID = MCPeerID(displayName: user.name)
-            self.mcSession = MCSession(peer: localPeerID, securityIdentity: nil, encryptionPreference: .Required)
+            let path = NSBundle.mainBundle().pathForResource("multipeer", ofType: "p12")
+            let data = NSData(contentsOfFile: path!)!
+            
+            var myIdentity: SecIdentityRef?
+            var myTrust: SecTrustRef?
+            var myCertChain: [SecCertificateRef]?
+            
+            let status = extractIdentityAndTrust(data, identity: &myIdentity, trust: &myTrust, certChain: &myCertChain)
+            
+            self.mcSession = MCSession(peer: localPeerID, securityIdentity: [myIdentity!], encryptionPreference: .Required)
             self.mcSession?.delegate = self
             
             self.advertisier = MCNearbyServiceAdvertiser(peer: localPeerID, discoveryInfo: nil, serviceType: transferServiceType)
@@ -107,7 +116,23 @@ class AdvertiseViewController: UIViewController, MCNearbyServiceAdvertiserDelega
                 
                 // CHECKING TRANSACTION CODE GOES HERE
                 TransactionRelay.authorizeTransaction(transaction, completionBlock: { (success) -> Void in
-                    
+                    if success {
+                        dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                            SwiftSpinner.show("Success!", animated: false)
+                            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), { () -> Void in
+                                SwiftSpinner.hide(completion: nil)
+                                self.dismissViewControllerAnimated(true, completion: nil)
+                            })
+                        })
+                    } else {
+                        dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                            SwiftSpinner.show("Transaction was not authorized!", animated: false)
+                            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), { () -> Void in
+                                SwiftSpinner.hide(completion: nil)
+                                self.dismissViewControllerAnimated(true, completion: nil)
+                            })
+                        })
+                    }
                 })
             }
         }
@@ -116,6 +141,29 @@ class AdvertiseViewController: UIViewController, MCNearbyServiceAdvertiserDelega
     
     func session(session: MCSession!, didFinishReceivingResourceWithName resourceName: String!, fromPeer peerID: MCPeerID!, atURL localURL: NSURL!, withError error: NSError!) {
         
+    }
+    
+    func session(session: MCSession!, didReceiveCertificate certificate: [AnyObject]!, fromPeer peerID: MCPeerID!, certificateHandler: ((Bool) -> Void)!) {
+        let cert = certificate[0] as! SecCertificateRef
+        let certData = SecCertificateCopyData(cert)
+        
+        let path = NSBundle.mainBundle().pathForResource("multipeer", ofType: "p12")
+        let data = NSData(contentsOfFile: path!)!
+        
+        var myIdentity: SecIdentityRef?
+        var myTrust: SecTrustRef?
+        var myCertChain: [SecCertificateRef]?
+        
+        let status = extractIdentityAndTrust(data, identity: &myIdentity, trust: &myTrust, certChain: &myCertChain)
+        
+        let myCert = myCertChain![0]
+        let myCertData = SecCertificateCopyData(myCert)
+        
+        if (certData.takeRetainedValue() as NSData).isEqualToData(myCertData.takeRetainedValue() as NSData) {
+            certificateHandler(true)
+        } else {
+            certificateHandler(false)
+        }
     }
     
     func sendAccountId() {

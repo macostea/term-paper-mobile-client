@@ -112,8 +112,9 @@ class Router: NSObject, NSURLSessionDelegate, NSURLSessionTaskDelegate {
             
             var myIdentity: SecIdentityRef?
             var myTrust: SecTrustRef?
+            var myCertChain: [SecCertificateRef]?
             
-            let status = self.extractIdentityAndTrust(data, identity: &myIdentity, trust: &myTrust)
+            let status = extractIdentityAndTrust(data, identity: &myIdentity, trust: &myTrust, certChain: &myCertChain)
             
             var myCertificate: Unmanaged<SecCertificateRef>?
             SecIdentityCopyCertificate(myIdentity, &myCertificate)
@@ -177,29 +178,4 @@ class Router: NSObject, NSURLSessionDelegate, NSURLSessionTaskDelegate {
         return trustResult == UInt32(kSecTrustResultUnspecified) || trustResult == UInt32(kSecTrustResultProceed)
     }
     
-    private func extractIdentityAndTrust(inP12data: CFDataRef, inout identity: SecIdentityRef?, inout trust: SecTrustRef?) -> OSStatus {
-        var securityError = errSecSuccess
-        
-        let password = "rate"
-        var options = NSMutableDictionary()
-        options.setObject(password, forKey: kSecImportExportPassphrase.takeRetainedValue() as String)
-        
-        var keyref: Unmanaged<CFArray>?
-        
-        securityError = SecPKCS12Import(inP12data, options, &keyref)
-        
-        if (securityError != 0) {
-            println("Error importing pkcs12: \(securityError)")
-        }
-        
-        var keychainArray = keyref!
-        var identityDict: Dictionary<String, AnyObject> = (keychainArray.takeRetainedValue() as NSArray)[0] as! Dictionary<String, AnyObject>
-        let identityKey = kSecImportItemIdentity.takeRetainedValue()
-        identity = identityDict[identityKey as String] as! SecIdentityRef
-        
-        let trustKey = kSecImportItemTrust.takeRetainedValue()
-        trust = identityDict[trustKey as String] as! SecTrustRef
-        
-        return securityError
-    }
 }

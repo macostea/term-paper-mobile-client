@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		151AD3961B1F290D00D4E239 /* multipeer.p12 in Resources */ = {isa = PBXBuildFile; fileRef = 151AD3951B1F290D00D4E239 /* multipeer.p12 */; };
 		154790B61AC193C6000A0FA5 /* MyAccountsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 154790B51AC193C6000A0FA5 /* MyAccountsTableViewController.swift */; };
 		154790B81AC19428000A0FA5 /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = 154790B71AC19428000A0FA5 /* Account.swift */; };
 		154790BA1AC194E5000A0FA5 /* Transaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 154790B91AC194E5000A0FA5 /* Transaction.swift */; };
@@ -42,6 +43,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		151AD3951B1F290D00D4E239 /* multipeer.p12 */ = {isa = PBXFileReference; lastKnownFileType = file; path = multipeer.p12; sourceTree = "<group>"; };
 		154790B51AC193C6000A0FA5 /* MyAccountsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyAccountsTableViewController.swift; sourceTree = "<group>"; };
 		154790B71AC19428000A0FA5 /* Account.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
 		154790B91AC194E5000A0FA5 /* Transaction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Transaction.swift; sourceTree = "<group>"; };
@@ -92,6 +94,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		151AD3971B1F291200D4E239 /* Certs */ = {
+			isa = PBXGroup;
+			children = (
+				151AD3951B1F290D00D4E239 /* multipeer.p12 */,
+				15D765E01B1DDA910009657C /* term-paper-ca.p12 */,
+				15D765DE1B1DD9AB0009657C /* serverCert.der */,
+			);
+			name = Certs;
+			sourceTree = "<group>";
+		};
 		15CD92111B08945F00ABB45B /* Third Party */ = {
 			isa = PBXGroup;
 			children = (
@@ -123,8 +135,7 @@
 		15F9E8511AC0B450008E860E /* TermPaperMobile */ = {
 			isa = PBXGroup;
 			children = (
-				15D765E01B1DDA910009657C /* term-paper-ca.p12 */,
-				15D765DE1B1DD9AB0009657C /* serverCert.der */,
+				151AD3971B1F291200D4E239 /* Certs */,
 				15CD92111B08945F00ABB45B /* Third Party */,
 				15F9E8781AC0B769008E860E /* Model */,
 				15F9E8771AC0B761008E860E /* Business Logic */,
@@ -291,6 +302,7 @@
 				15F9E85A1AC0B450008E860E /* Main.storyboard in Resources */,
 				15F9E85F1AC0B450008E860E /* LaunchScreen.xib in Resources */,
 				15F9E85C1AC0B450008E860E /* Images.xcassets in Resources */,
+				151AD3961B1F290D00D4E239 /* multipeer.p12 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
