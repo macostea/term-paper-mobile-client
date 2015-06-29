@@ -10,7 +10,7 @@ import Foundation
 import SwiftyJSON
 import CryptoSwift
 
-private let baseURLString = "https://secure-transfer.tutora.ro/api"
+private let baseURLString = "https://secure-transfer.tutora.ro/backend/api"
 private let EXPECTED_CERTIFICATE_SHA256 = "szarJiMbSbl6Id9MojN376C4lEtxJFffTFXMFBjNfg4="
 
 //private let baseURLString = "https://term-paper-backend.herokuapp.com/api"
